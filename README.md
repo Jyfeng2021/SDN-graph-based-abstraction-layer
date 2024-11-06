@@ -1,4 +1,4 @@
- This code presents an architecture to represent the network as a graph.  The purpose of this architecture is to implement an abstraction of the SDN controller at the application plane.  We abstract all network elements with a graph model, with the attributes of the elements as the attributes of the graph（）.  This virtualized logical abstraction layer, which is not limited by the physical network, enables network administrators to schedule network resources directly in a global view.
+ This code presents an architecture to represent the network as a graph.  The purpose of this architecture is to implement an abstraction of the SDN controller at the application plane.  We abstract all network elements with a graph model, with the attributes of the elements as the attributes of the graph.  This virtualized logical abstraction layer, which is not limited by the physical network, enables network administrators to schedule network resources directly in a global view.
 
 Here's how to run a graph-based abstraction layer.  
 
