@@ -27,6 +27,7 @@ Tip:
 Start the controller first, then the topology, and wait until the switch is fully connected to the controller before running the traffic generator.
 
 ==============================================================================================================
+
 mininet detailed use of mininet can be found on the official website, where common examples are listed：
 In mininet> to the switch flow table:  
 dpctl add-flow s1 priority=0,actions=output:controller  
