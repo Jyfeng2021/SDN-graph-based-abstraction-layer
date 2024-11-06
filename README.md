@@ -26,7 +26,8 @@ To run the traffic-fixed generator, you can run Traffic_generated_nonrandom.py i
 Tip: 
 Start the controller first, then the topology, and wait until the switch is fully connected to the controller before running the traffic generator.
 
-==============================================================================================================
+===================================================================================
+
 
 mininet detailed use of mininet can be found on the official website, where common examples are listed：
 In mininet> to the switch flow table:  
@@ -40,7 +41,8 @@ dump-ports
 To view Layer 1 and Layer 2 information about a port:
 dpctl show  
 
-==============================================================================================================
+=================================================================================
+
 When the operation is not normal, the following error message is displayed: “Exception: Please shut down the controller which is running on port 6653” 
 The treatment method is:
 sudo fuser -k 6653/tcp  
