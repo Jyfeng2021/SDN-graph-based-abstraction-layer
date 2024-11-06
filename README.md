@@ -1,40 +1,41 @@
-以下是运行基于图的抽象层的方法。  
-启动ryu控制器：   
-cd /home/jyf/ryu/ryu/app/   
-sudo ryu-manager graph-based_abstraction layer  --verbose!  
+Here's how to run a graph-based abstraction layer.  
 
-mininet运行：  
-测试用的topo:    
-单一拓扑：  
-sudo mn --controller=remote --topo=single,4 --mac  
-线性拓扑：  
-sudo mn --controller=remote --topo=linear,4 --mac  
-树形拓扑：  
-sudo mn --controller=remote --topo=tree,2,2 --mac  
-现有的topo文件：  
+1.Start the ryu controller in the console：   
+cd /home/jyf/ryu/ryu/app/   
+sudo ryu-manager graph-based_abstraction layer  --verbose  
+
+2.Start mininet in the console:
+You can use the custom topology from our experiment:
 sudo python3 experiment_topo.py  
 
+You can also use mininet's built-in topology creation method:    
+Single topology:
+sudo mn --controller=remote --topo=single,4 --mac  
+Linear topology:
+sudo mn --controller=remote --topo=linear,4 --mac  
+Tree topology:
+sudo mn --controller=remote --topo=tree,2,2 --mac  
 
-运行流量生成器：  
-非远程控制器运行：  
-sudo python3 topo_launcher.py  
-远程控制器运行：  
-sudo python3 topo_launcher.py --controller=remote ip=192.168.253.131 --topo=linear=4  
+3.Run the traffic random generator：  
+Non-remote controller can run: 
+sudo python3 Traffic_ generated_randomly.py  
+Remote controller can run: 
+sudo python3 Traffic_ generated_randomly.py --controller=remote ip=192.168.253.131 --topo=linear=4  
+To run the traffic-fixed generator, you can run Traffic_generated_nonrandom.py in the same way as the random traffic generator.
 
+miThe detailed use of mininet can be found on the official website, where common examples are listed：
+In mininet> to the switch flow table:  
+dpctl add-flow s1 priority=0,actions=output:controller  
 
-在 mininet> 中给交换机下放流表：  
-举个例子：dpctl add-flow s1 priority=0,actions=output:controller  
+View the flow table: dpctl dump-flows  
 
-查看流表： dpctl dump-flows  
-
-查看端口的统计信息（包括Tx,Rx counters, bytes以及Error counters等）：  
+View the statistics of a port, including Tx,Rx counters, bytes, and Error counters：
 dump-ports  
 
-查看端口的一层和二层信息：  
+To view Layer 1 and Layer 2 information about a port:
 dpctl show  
 
-当运行不正常有如下的错误提示：  
-Exception: Please shut down the controller which is running on port 6653:  
-处理方法是：  
+When the operation is not normal, the following error message is displayed: “Exception: Please shut down the controller which is running on port 6653” 
+The treatment method is:
 sudo fuser -k 6653/tcp  
 sudo mn -c  
