@@ -23,7 +23,10 @@ Remote controller can run:
 sudo python3 Traffic_ generated_randomly.py --controller=remote ip=192.168.253.131 --topo=linear=4  
 To run the traffic-fixed generator, you can run Traffic_generated_nonrandom.py in the same way as the random traffic generator.
 
-miThe detailed use of mininet can be found on the official website, where common examples are listed：
+Tip: 
+Start the controller first, then the topology, and wait until the switch is fully connected to the controller before running the traffic generator.
+==============================================================================================================
+mininet detailed use of mininet can be found on the official website, where common examples are listed：
 In mininet> to the switch flow table:  
 dpctl add-flow s1 priority=0,actions=output:controller  
 
@@ -35,6 +38,7 @@ dump-ports
 To view Layer 1 and Layer 2 information about a port:
 dpctl show  
 
+==============================================================================================================
 When the operation is not normal, the following error message is displayed: “Exception: Please shut down the controller which is running on port 6653” 
 The treatment method is:
 sudo fuser -k 6653/tcp  
