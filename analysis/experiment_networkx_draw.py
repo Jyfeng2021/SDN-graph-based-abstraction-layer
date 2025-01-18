@@ -6,7 +6,7 @@ import time
 
 
 def linear(n):
-    # 初始化线性拓扑
+  
     h = []
     s = []
     link=[]
@@ -20,7 +20,7 @@ def linear(n):
         if i > 1:
             link.append((s[i - 1], s[i - 2]))
             link.append((s[i - 2], s[i - 1]))
-    return link,s+h,len(h)         #返回连接关系和节点和节点数量。
+    return link,s+h,len(h)          #Returns connection relationships and nodes. And the number of nodes.
 
 def mesh(n):
     # Initialize mesh topology
@@ -37,9 +37,9 @@ def mesh(n):
         for j in range(len(s)-1):
             link.append((s[j], s[-1]))
             link.append((s[-1], s[j]))
-    return link,s+h,len(h)           #返回连接关系和节点。节点数量。
+    return link,s+h,len(h)             #Returns connection relationships and nodes. And the number of nodes.
 
-def Tree(n):   #n必须是偶数
+def Tree(n):    
     #Marking the number of switch for per level
     L1 = n;
     L2 = L1*2
@@ -92,76 +92,64 @@ def Tree(n):   #n必须是偶数
             links.append((hs,e[i]))
             h.append(hs)
 
-    return links,c+a+e+h,len(h)          #返回连接关系和节点。和节点数量。
+    return links,c+a+e+h,len(h)            #Returns connection relationships and nodes. And the number of nodes.
 
-# G=nx.DiGraph()
-# links,nodes,num=Tree(4)
-# G.add_nodes_from(nodes)
-# G.add_edges_from(links)
-#
-# star_timestamp = time.time()
-# path=nx.shortest_path(G,'h1','h8')
-# delay = (time.time()-star_timestamp) *1000   #转化为毫秒 ms
-#
-# print("delay",delay,path)
-# nx.draw_networkx(G)
-# plt.show()
 member=512
 try:
     with open(r'/home/jyf/Desktop/Experiment/experiment/Networx_linear.txt', 'a') as f2:
         for i in range(2,member,6):
             G2=nx.DiGraph()
-            links,nodes,num=linear(i)      #生成网络拓扑
+            links,nodes,num=linear(i)      #
             G2.add_nodes_from(nodes)
             G2.add_edges_from(links)
 
             star_timestamp = time.time()
-            path=nx.shortest_path(G2,'h1','h'+str(num))   #计算最短路径，并返回
+            path=nx.shortest_path(G2,'h1','h'+str(num))   #Calculate the shortest path and return
             end_timestamp = time.time()
-            delay = (end_timestamp-star_timestamp) *1000000   #转化为微秒，微秒（microsecond），时间单位:μs
+            delay = (end_timestamp-star_timestamp) *1000000   #（microsecond），μs
 
             f2.write(str(delay) + '\n')
             print("linear_delay",delay,G2,path)
 except:
-    print("linear，出错")
+    print("linear，error")
 time.sleep(1)
 
 try:
     with open(r'/home/jyf/Desktop/Experiment/experiment/Networx_mesh.txt', 'a') as f3:
         for i in range(2,member,6):
             G3=nx.DiGraph()
-            links,nodes,num=mesh(i)      #生成网络拓扑
+            links,nodes,num=mesh(i)     
             G3.add_nodes_from(nodes)
             G3.add_edges_from(links)
 
             star_timestamp = time.time()
-            path=nx.shortest_path(G3,'h1','h'+str(num))   #计算最短路径，并返回
+            path=nx.shortest_path(G3,'h1','h'+str(num))   #Calculate the shortest path and return
             end_timestamp = time.time()
-            delay = (end_timestamp-star_timestamp) *1000000   #转化为微秒，微秒（microsecond），时间单位:μs
+            delay = (end_timestamp-star_timestamp) *1000000   #（microsecond），μs
 
             f3.write(str(delay) + '\n')
             print("mesh_delay",delay,G3,path)
 except:
-    print("mesh，出错")
+    print("mesh，error")
 time.sleep(1)
 
 try:
     with open(r'/home/jyf/Desktop/Experiment/experiment/Networx_Tree.txt', 'a') as f1:
         for i in range(2,member,6):
             G1=nx.DiGraph()
-            links,nodes,num=Tree(i)      #生成网络拓扑
+            links,nodes,num=Tree(i)      
             G1.add_nodes_from(nodes)
             G1.add_edges_from(links)
 
             star_timestamp = time.time()
-            path=nx.shortest_path(G1,'h1','h'+str(num))   #计算最短路径，并返回
+            path=nx.shortest_path(G1,'h1','h'+str(num))   #Calculate the shortest path and return
             end_timestamp = time.time()
-            delay = (end_timestamp-star_timestamp) *1000000   #转化为微秒，微秒（microsecond），时间单位:μs
+            delay = (end_timestamp-star_timestamp) *1000000   #（microsecond），μs
 
             f1.write(str(delay) + '\n')
             print("Tree_delay",delay,G1,path)
 except:
-    print("Tree，出错")
+    print("Tree，error")
 
 
 
